@@ -1,3 +1,41 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+	@apply bg-offwhite text-navy;
+}
+a,
+strong {
+	@apply font-bold text-bluegreen;
+}
+a:hover {
+	@apply underline;
+}
+h3 {
+	@apply font-bold text-lg text-bluegreen;
+}
+h2 {
+	@apply font-bold text-xl text-bluegreen;
+}
+h1 {
+	@apply font-bold text-2xl text-bluegreen;
+}
+.card {
+	@apply border border-navy rounded bg-teal p-2 shadow-lg;
+}
+.alternate {
+	@apply bg-teal rounded;
+}
+.card strong {
+	@apply text-bluegreen mr-2;
+}
+#navigation-bar a {
+	@apply text-offwhite px-2 py-1;
+}
+#navigation-bar a.active {
+	@apply bg-teal text-navy rounded;
+}
+#footer-bar a {
+	@apply text-offwhite;
+}

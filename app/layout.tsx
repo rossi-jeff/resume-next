@@ -1,6 +1,7 @@
-import Link from 'next/link'
 import './globals.css'
 import { Inter } from 'next/font/google'
+import NavigationBar from './navigation-bar'
+import FooterBar from './footer-bar'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -17,17 +18,14 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<body className={inter.className}>
-				<nav className="flex flex-wrap justify-between mx-4">
-					<Link href="/">Home</Link>
-					<Link href="/employment">Employment</Link>
-					<Link href="/education">Education</Link>
-					<Link href="/contact">Contact</Link>
-					<Link href="/references">References</Link>
-					<Link href="/testimonials">Testimonials</Link>
-					<Link href="/resume">Resume</Link>
-					<Link href="/links">Links</Link>
-				</nav>
-				{children}
+				<div className="flex flex-col h-screen">
+					<NavigationBar />
+					<div className="mx-4 flex-grow overflow-y-auto h-full">
+						{children}
+						<div id="scroll-space" className="h-12"></div>
+					</div>
+					<FooterBar />
+				</div>
 			</body>
 		</html>
 	)

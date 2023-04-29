@@ -1,6 +1,5 @@
 import { FormatName } from '../../lib/format-name'
 import { Comment } from '../../types/comment.type'
-import { diceFiveKind } from '../../../games-nest/src/ten-grand/ten-grand-functions'
 
 export default function CommentCard({ comment }: { comment: Comment }) {
 	const getAuthor = (comment: Comment) => {
@@ -16,10 +15,10 @@ export default function CommentCard({ comment }: { comment: Comment }) {
 	}
 
 	return (
-		<div id={'comment-' + comment.Id} className="mb-4">
+		<div id={'comment-' + comment.Id} className="mb-4 card">
 			<div>{comment.Message}</div>
 			{getAuthor(comment) && (
-				<div className="text-right pr-2">
+				<div className="text-right pr-2 text-bluegreen font-bold">
 					--&nbsp;
 					{getAuthor(comment)}
 				</div>

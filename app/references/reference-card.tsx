@@ -3,7 +3,7 @@ import { Reference } from '../../types/reference.type'
 
 export default function ReferenceCard({ reference }: { reference: Reference }) {
 	return (
-		<div id={'reference-' + reference.Id} className="mb-4">
+		<div id={'reference-' + reference.Id} className="mb-4 card">
 			{reference.Name && <h3>{FormatName(reference.Name)}</h3>}
 			{reference.Company && (
 				<div>
