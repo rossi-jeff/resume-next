@@ -1,5 +1,7 @@
 import { GET_COMMENTS_QUERY } from '../../graphql/queries/get-comments'
 import { graphQlUrl } from '../../lib/graphql-url'
+import { Comment } from '../../types/comment.type'
+import CommentCard from './comment-card'
 
 export default async function Testimonials() {
 	const { data, error, isLoading } = await fetch(graphQlUrl, {
@@ -14,5 +16,15 @@ export default async function Testimonials() {
 	if (error) return <div>{String(error)}</div>
 	if (isLoading) return <div>Loading...</div>
 
-	return <div id="testimonials-page">{JSON.stringify(data)}</div>
+	const comments: Comment[] = data.getComments
+
+	return (
+		<div id="testimonials-page">
+			{comments &&
+				comments.length &&
+				comments.map((comment) => (
+					<CommentCard key={comment.Id} comment={comment} />
+				))}
+		</div>
+	)
 }

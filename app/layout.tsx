@@ -21,8 +21,10 @@ export default function RootLayout({
 					<Link href="/">Home</Link>
 					<Link href="/employment">Employment</Link>
 					<Link href="/education">Education</Link>
+					<Link href="/contact">Contact</Link>
 					<Link href="/references">References</Link>
 					<Link href="/testimonials">Testimonials</Link>
+					<Link href="/resume">Resume</Link>
 					<Link href="/links">Links</Link>
 				</nav>
 				{children}

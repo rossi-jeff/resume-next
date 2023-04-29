@@ -1,5 +1,7 @@
 import { GET_REFERENCES_QUERY } from '../../graphql/queries/get-references'
 import { graphQlUrl } from '../../lib/graphql-url'
+import { Reference } from '../../types/reference.type'
+import ReferenceCard from './reference-card'
 
 export default async function References() {
 	const { data, error, isLoading } = await fetch(graphQlUrl, {
@@ -14,5 +16,15 @@ export default async function References() {
 	if (error) return <div>{String(error)}</div>
 	if (isLoading) return <div>Loading...</div>
 
-	return <div id="references-page">{JSON.stringify(data)}</div>
+	const references: Reference[] = data.getReferences
+
+	return (
+		<div id="references-page">
+			{references &&
+				references.length &&
+				references.map((reference) => (
+					<ReferenceCard key={reference.Id} reference={reference} />
+				))}
+		</div>
+	)
 }
