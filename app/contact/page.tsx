@@ -1,7 +1,190 @@
-export const metadata = {
-  title: "Jeff Rossi | Contact",
+"use client";
+
+import { useState } from "react";
+import AddressForm from "./address-form";
+import CommentForm from "./comment-form";
+import ContactMethodForm from "./contact-method-form";
+import NameForm from "./name-form";
+import { FullName } from "@/types/full-name.type";
+import { Address } from "@/types/address.type";
+
+type ContactType = {
+  Name: FullName;
+  Address: Address;
+  Email: string;
+  EmailType: string;
+  Phone: string;
+  PhoneType: string;
+  Preferred: string;
+  Subject: string;
+  Message: string;
 };
 
 export default function ContactPage() {
-  return <div id="contact-page">Contact Form</div>;
+  const [contact, setContact] = useState<ContactType>({
+    Name: {
+      Salutation: "",
+      First: "",
+      Middle: "",
+      Last: "",
+      Suffix: "",
+    },
+    Address: {
+      Address: "",
+      Suite: "",
+      City: "",
+      State: "",
+      Zip: "",
+    },
+    Email: "",
+    EmailType: "Work",
+    Phone: "",
+    PhoneType: "Work",
+    Preferred: "Email",
+    Subject: "",
+    Message: "",
+  });
+
+  const toggle = (id: string) => {
+    let el;
+    const contents = document.getElementsByClassName("accordion-content");
+    for (let i = 0; i < contents.length; i++) {
+      el = document.getElementById(contents[i].id);
+      if (el) {
+        if (el.id == id) {
+          if (el.classList.contains("open")) {
+            el.classList.remove("open");
+          } else el.classList.add("open");
+        } else {
+          el.classList.remove("open");
+        }
+      }
+    }
+  };
+
+  const fieldChanged = (ev: any) => {
+    const { name, value } = ev.target;
+    let newContact: ContactType = { ...contact };
+    if (name.includes(".")) {
+      const [key1, key2] = name.split(".");
+      if (key1 == "Name") {
+        let newName: FullName = { ...contact.Name };
+        switch (key2) {
+          case "Salutation":
+            newName.Salutation = value;
+            break;
+          case "First":
+            newName.First = value;
+            break;
+          case "Middle":
+            newName.Middle = value;
+            break;
+          case "Last":
+            newName.Last = value;
+            break;
+          case "Suffix":
+            newName.Suffix = value;
+            break;
+        }
+        newContact.Name = newName;
+      } else if (key1 == "Address") {
+        let newAddress: Address = { ...contact.Address };
+        switch (key2) {
+          case "Address":
+            newAddress.Address = value;
+            break;
+          case "Suite":
+            newAddress.Suite = value;
+            break;
+          case "City":
+            newAddress.City = value;
+            break;
+          case "State":
+            newAddress.State = value;
+            break;
+          case "Zip":
+            newAddress.Zip = value;
+            break;
+        }
+        newContact.Address = newAddress;
+      }
+    } else {
+      switch (name) {
+        case "Email":
+          newContact.Email = value;
+          break;
+        case "EmailType":
+          newContact.EmailType = value;
+          break;
+        case "Message":
+          newContact.Message = value;
+          break;
+        case "Phone":
+          newContact.Phone = value;
+          break;
+        case "PhoneType":
+          newContact.PhoneType = value;
+          break;
+        case "Preferred":
+          newContact.Preferred = value;
+          break;
+        case "Subject":
+          newContact.Subject = value;
+          break;
+      }
+    }
+    setContact(newContact);
+  };
+
+  return (
+    <div id="contact-page">
+      <h1>Contact Me</h1>
+      <div id="contact-accordion">
+        <div id="name-accordion">
+          <button onClick={() => toggle("name-content")} className="accordion">
+            Name
+          </button>
+          <div id="name-content" className="accordion-content open">
+            <NameForm fieldChanged={fieldChanged} />
+          </div>
+        </div>
+
+        <div id="address-accordion">
+          <button
+            onClick={() => toggle("address-content")}
+            className="accordion"
+          >
+            Address
+          </button>
+          <div id="address-content" className="accordion-content">
+            <AddressForm fieldChanged={fieldChanged} />
+          </div>
+        </div>
+
+        <div id="methods-accordion">
+          <button
+            onClick={() => toggle("methods-content")}
+            className="accordion"
+          >
+            Contact Methods
+          </button>
+          <div id="methods-content" className="accordion-content">
+            <ContactMethodForm fieldChanged={fieldChanged} />
+          </div>
+        </div>
+
+        <div id="comment-accordion">
+          <button
+            onClick={() => toggle("comment-content")}
+            className="accordion"
+          >
+            Comment
+          </button>
+          <div id="comment-content" className="accordion-content">
+            <CommentForm fieldChanged={fieldChanged} />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }
