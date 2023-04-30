@@ -39,3 +39,6 @@ h1 {
 #footer-bar a {
 	@apply text-offwhite;
 }
+.page-break {
+	page-break-after: always;
+}
