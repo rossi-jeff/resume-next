@@ -59,3 +59,7 @@ h1 {
 button.accordion {
   @apply border border-navy rounded py-1 px-2 text-navy bg-offwhite w-full text-left mb-2 font-bold;
 }
+button.contact,
+button.print {
+  @apply border border-navy rounded py-1 px-2 text-navy bg-offwhite;
+}
