@@ -63,3 +63,15 @@ button.contact,
 button.print {
   @apply border border-navy rounded py-1 px-2 text-navy bg-offwhite;
 }
+#left-panel {
+  @apply bg-teal text-navy w-[10rem] fixed top-0 left-[-11rem] h-screen z-10 p-2 transition;
+}
+#left-panel.open {
+  @apply left-0;
+}
+#left-panel a {
+  @apply text-navy font-bold px-2 py-1;
+}
+#left-panel a.active {
+  @apply bg-navy text-offwhite rounded;
+}

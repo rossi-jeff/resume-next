@@ -2,62 +2,72 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { FaBars } from "react-icons/fa";
+import { FaWindowClose } from "react-icons/fa";
 
-export default function NavigationBar({ toggle }: { toggle: Function }) {
+export default function LeftPanel({ toggle }: { toggle: Function }) {
   const pathname = usePathname();
-
   return (
-    <div
-      id="navigation-bar"
-      className="bg-navy text-offwhite mx-4 my-4 p-2 rounded"
-    >
-      <div className="flex flex-wrap align-text-bottom">
-        <button className="md:hidden mr-2" onClick={() => toggle()}>
-          <FaBars />
+    <div id="left-panel">
+      <div className="text-right">
+        <button className="py-1 font-bold" onClick={() => toggle()}>
+          <FaWindowClose />
         </button>
-        <h2 className="text-offwhite">Jeff Rossi</h2>
-        <span className="text-bluegreen mx-2 font-bold">&nbsp;|&nbsp;</span>
-        <h3 className="text-teal font-light">Software Developer</h3>
       </div>
-      <nav className="hidden md:flex md:flex-wrap md:justify-between mt-2">
-        <Link href="/" className={pathname == "/" ? "active" : ""}>
+      <nav className="flex flex-col">
+        <Link
+          href="/"
+          className={pathname == "/" ? "active" : ""}
+          onClick={() => toggle()}
+        >
           Home
         </Link>
         <Link
           href="/employment"
           className={pathname == "/employment" ? "active" : ""}
+          onClick={() => toggle()}
         >
           Employment
         </Link>
         <Link
           href="/education"
           className={pathname == "/education" ? "active" : ""}
+          onClick={() => toggle()}
         >
           Education
         </Link>
         <Link
           href="/contact"
           className={pathname == "/contact" ? "active" : ""}
+          onClick={() => toggle()}
         >
           Contact
         </Link>
         <Link
           href="/references"
           className={pathname == "/references" ? "active" : ""}
+          onClick={() => toggle()}
         >
           References
         </Link>
         <Link
           href="/testimonials"
           className={pathname == "/testimonials" ? "active" : ""}
+          onClick={() => toggle()}
         >
           Testimonials
         </Link>
-        <Link href="/resume" className={pathname == "/resume" ? "active" : ""}>
+        <Link
+          href="/resume"
+          className={pathname == "/resume" ? "active" : ""}
+          onClick={() => toggle()}
+        >
           Resume
         </Link>
-        <Link href="/links" className={pathname == "/links" ? "active" : ""}>
+        <Link
+          href="/links"
+          className={pathname == "/links" ? "active" : ""}
+          onClick={() => toggle()}
+        >
           Links
         </Link>
       </nav>
